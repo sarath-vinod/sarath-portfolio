@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+@theme {
+  --color-netflix-black: #141414;
+  --color-netflix-red: #E50914;
+  --color-netflix-red-hover: #f40612;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #141414;
+  color: #fff;
+}
+
+/* Hide horizontal scrollbar for rows (scroll via arrows/dots/touch) */
+.scroll-row {
+  scrollbar-width: none;
+}
+.scroll-row::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+  animation: fade-in 0.8s ease-out forwards;
+}
+
+/* AZ Intro – Netflix-style logo + light sweep */
+.intro-logo,
+.intro-logo-fallback {
+  animation: logoReveal 1.8s ease forwards;
+}
+
+.intro-sweep {
+  animation: lightSweep 2.2s 1s ease forwards;
+}
+
+@keyframes logoReveal {
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes lightSweep {
+  0% {
+    transform: translate(-150%, -50%) skew(-12deg);
+  }
+  100% {
+    transform: translate(50%, -50%) skew(-12deg);
+  }
+}
