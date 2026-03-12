@@ -47,7 +47,7 @@ export default function AZIntro() {
       className="relative flex items-center justify-center"
     >
       <img
-        src="/logo/az-logo.png"
+        src="/logo/az_logo_transparent.png"
         alt="Ambrozzz"
         className="relative z-10 w-48 sm:w-64 md:w-72 max-w-[280px] h-auto block"
         onError={(e) => {

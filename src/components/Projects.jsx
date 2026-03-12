@@ -2,17 +2,57 @@ import { useState, useEffect, useRef } from 'react'
 import ProjectCard from './ProjectCard'
 
 const projects = [
-  { id: 1, title: 'SLCA Ottawa Digital Hub', description: 'Community platform for SLCA Ottawa. Digital hub for members and events.', technologies: ['React', 'PHP', 'MySQL'], githubUrl: 'https://github.com', liveUrl: null, imagePlaceholder: '🌐' },
-  { id: 2, title: 'Movie Mayhem Security Project', description: 'Security-focused movie app with authentication and safe data handling.', technologies: ['React', 'Node.js', 'JWT'], githubUrl: 'https://github.com', liveUrl: null, imagePlaceholder: '🎬' },
-  { id: 3, title: 'Task Manager Application', description: 'Full-featured task manager with boards, due dates, and collaboration.', technologies: ['React', 'JavaScript', 'REST API'], githubUrl: 'https://github.com', liveUrl: null, imagePlaceholder: '✅' },
-  { id: 4, title: 'Invoice Management System', description: 'Create, send, and track invoices with client management.', technologies: ['PHP', 'Laravel', 'MySQL'], githubUrl: 'https://github.com', liveUrl: null, imagePlaceholder: '📄' },
-  { id: 5, title: 'Pokedex API App', description: 'Browse Pokémon data with search and filters using the PokeAPI.', technologies: ['React', 'JavaScript', 'API'], githubUrl: 'https://github.com', liveUrl: null, imagePlaceholder: '⚡' },
+  {
+    id: 1,
+    title: 'Task Manager Web Application',
+    description: 'Kanban board with drag-and-drop, authentication, task prioritization, due dates, calendar view, and CSRF protection.',
+    technologies: ['Laravel', 'Livewire', 'SQLite'],
+    githubUrl: 'https://github.com/sarath-vinod',
+    liveUrl: null,
+    imagePlaceholder: '✅',
+  },
+  {
+    id: 2,
+    title: 'Invoice Management System',
+    description: 'Secure PDF invoice upload, dynamic file storage, CRUD operations, responsive UI, and in-browser invoice viewing.',
+    technologies: ['PHP', 'MySQL'],
+    githubUrl: 'https://github.com/sarath-vinod',
+    liveUrl: null,
+    imagePlaceholder: '📄',
+  },
+  {
+    id: 3,
+    title: 'Movie Mayhem Security Project',
+    description: 'Security-focused movie app with authentication and safe data handling.',
+    technologies: ['React', 'Node.js', 'JWT'],
+    githubUrl: 'https://github.com/sarath-vinod',
+    liveUrl: null,
+    imagePlaceholder: '🎬',
+  },
+  {
+    id: 4,
+    title: 'SLCA Ottawa Digital Hub',
+    description: 'Community platform for SLCA Ottawa. Digital hub for members and events.',
+    technologies: ['React', 'PHP', 'MySQL'],
+    githubUrl: 'https://github.com/sarath-vinod',
+    liveUrl: null,
+    imagePlaceholder: '🌐',
+  },
+  {
+    id: 5,
+    title: 'Pokedex Web App',
+    description: 'Pokémon search, API integration, DOM manipulation, responsive design, and local storage support.',
+    technologies: ['HTML', 'CSS', 'JavaScript', 'Bootstrap', 'API'],
+    githubUrl: 'https://github.com/sarath-vinod',
+    liveUrl: null,
+    imagePlaceholder: '⚡',
+  },
 ]
 
 const SLIDE_DURATION_MS = 5000
-// 11 segments: [spacer, p0..p4, p0..p4] — no gap between last (Pokedex) and first
+// 11 segments: [spacer, p0..p4, p0..p4] for 5 projects — seamless loop
 const SEGMENT_COUNT = 11
-const MAX_POSITION = 6 // at 6 we show p0,p1,p2; reset to 1 (same view, no gap)
+const MAX_POSITION = 6
 
 export default function Projects() {
   const [slidePosition, setSlidePosition] = useState(0)
@@ -78,14 +118,13 @@ export default function Projects() {
     ...projects.map((p) => ({ project: p })),
   ]
 
-  // Centre segment for highlight: pos 0->1, 1->2, 2->3, 3->4, 4->5, 5->6 (p0), 6->7 (p1)
-  const centerSegmentIndex = slidePosition <= 4 ? slidePosition + 1 : slidePosition === 5 ? 6 : 7
+  const centerSegmentIndex = slidePosition + 1
 
   return (
     <section id="projects" className="py-16 md:py-24 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">Featured Projects</h2>
-        <p className="text-gray-400 mb-8">3 cards visible — centre one is big, then slides forward to the next</p>
+        <h2 className="text-3xl md:text-4xl font-bold text-theme-primary mb-2 text-center">Projects</h2>
+        <p className="text-theme-muted mb-8 text-center">Best projects from my resume — technical skills & problem-solving</p>
 
         <div
           ref={containerRef}
@@ -145,10 +184,20 @@ export default function Projects() {
                 type="button"
                 aria-label={`Project ${i + 1}`}
                 onClick={() => goToProject(i)}
-                className={`h-1.5 rounded-full transition-all ${i === activeProjectIndex ? 'w-6 bg-[#E50914]' : 'w-1.5 bg-gray-500 hover:bg-gray-400'}`}
+                className={`h-1.5 rounded-full transition-all ${i === activeProjectIndex ? 'w-6 bg-theme-accent' : 'w-1.5 bg-theme-muted hover:opacity-80'}`}
               />
             ))}
           </div>
+        </div>
+        <div className="text-center mt-8">
+          <a
+            href="https://github.com/sarath-vinod"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block px-8 py-4 bg-theme-accent text-white font-semibold rounded hover:opacity-90 transition-opacity"
+          >
+            View All
+          </a>
         </div>
       </div>
     </section>
